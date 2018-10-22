@@ -1,0 +1,54 @@
+{
+  "name": "bookissue",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "student_id": {
+      "type": "string",
+      "required": true
+    },
+    "book_id": {
+      "type": "string",
+      "required": true
+    },
+    "expected_return_date": {
+      "type": "string"
+    },
+    "issue_date": {
+      "type": "string",
+      "required": true
+    },
+    "exact_return_date": {
+      "type": "string"
+    },
+    "fine": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "student": {
+      "type": "belongsTo",
+      "model": "student",
+      "foreignKey": "student_id"
+    },
+    "book": {
+      "type": "belongsTo",
+      "model": "book",
+      "foreignKey": "book_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}
